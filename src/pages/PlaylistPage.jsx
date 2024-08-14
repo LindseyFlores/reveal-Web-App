@@ -28,18 +28,44 @@ export default function PlaylistPage() {
     }
   }, []);
 
+  const handlePlaylistClick = (playlist) => {
+    if (onSelectPlaylist) {
+      onSelectPlaylist(playlist); // Invoke callback to handle playlist selection
+    }
+    // Navigate to a different page or display details about this playlist
+    console.log('Selected playlist:', playlist);
+  };
+
   if (error) {
     return <div>{error}</div>;
   }
 
   return (
     <div>
-      <h1>Your Spotify Playlists</h1>
-      <ul>
+      <h1>Select your Spotify playlist</h1>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
         {playlists.map((playlist) => (
-          <li key={playlist.id}>{playlist.name}</li>
+          <div 
+            key={playlist.id}
+            onClick={() => handlePlaylistClick(playlist)} // Handle click event
+            style={{ 
+              cursor: 'pointer', 
+              width: '200px', 
+              textAlign: 'center', 
+              padding: '10px', 
+              borderRadius: '10px', 
+              backgroundColor: '#FFA500'
+            }}
+          >
+            <img 
+              src={playlist.images[0]?.url || 'placeholder-image-url'} // Use a placeholder if no image is available
+              alt={playlist.name} 
+              style={{ width: '100%', borderRadius: '10px' }}
+            />
+            <p>{playlist.name}</p>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
