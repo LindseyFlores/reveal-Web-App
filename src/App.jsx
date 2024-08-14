@@ -3,6 +3,7 @@ import { Routes, Route, Link } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import PlaylistPage from './pages/PlaylistPage';
+import CallbackPage from './pages/CallbackPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/playlist" element={<PlaylistPage />} />
+        <Route path="/callback" element={<CallbackPage />} />
       </Routes>
     </div>
   );
