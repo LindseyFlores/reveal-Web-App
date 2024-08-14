@@ -6,12 +6,17 @@ export default function CallbackPage() {
 
   useEffect(() => {
     const hash = window.location.hash;
+    console.log('Current URL hash:', hash); // Log the hash to see what is in the URL
+
     let token = window.localStorage.getItem("token");
 
     if (!token && hash) {
       token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1];
-      window.localStorage.setItem("token", token);
-      navigate("/playlist"); // Redirect to playlist page after successful login
+      console.log('Extracted Token:', token); // Log the extracted token
+      if (token) {
+        window.localStorage.setItem("token", token); // Store token in localStorage
+        navigate("/playlist"); // Redirect to playlist page
+      }
     }
   }, [navigate]);
 
